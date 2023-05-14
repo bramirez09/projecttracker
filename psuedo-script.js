@@ -48,18 +48,19 @@ function printProjectData(name, type, hourlyRate, dueDate) {
   }
 
 function readProjectsFromStorage(){
-  var projects = localStorage.getItem('projects');
-  projects = JSON.parse(projects);
+  var projects = JSON.parse(localStorage.getItem('projects')) || [];
+
+  //projects = JSON.parse(projects);
   return projects;
 }
 
-function writeSavelocalData (project){
+/*function writeSavelocalData (project){
   console.log(project)
   var saveLocalData = localStorage.setItem("projects", JSON.stringify(project));
   saveLocalData = readProjectsFromStorage();
   console.log(saveLocalData)
  
-}
+}*/
 
 // function calculateTotalEarnings(rate, days) {
 
@@ -81,6 +82,8 @@ function handleProjectFormSubmit(event) {
 
   printProjectData(projectName, projectType, hourlyRate, dueDate);
 
+  var projects = JSON.parse(localStorage.getItem('projects')) || [];
+
   //project object with user input from form
 
   var newProject = {
@@ -90,7 +93,10 @@ function handleProjectFormSubmit(event) {
     date: dueDate,
   }
 
-  writeSavelocalData(newProject);
+  projects.push(newProject);
+  localStorage.setItem("projects", JSON.stringify(projects));
+
+  //writeSavelocalData(newProject);
 
 
   projectFormEl[0].reset();
