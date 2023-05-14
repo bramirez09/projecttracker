@@ -5,8 +5,9 @@ var projectModalEl = $('#project-modal');
 var projectFormEl = $('#project-form');
 var projectNameInputEl = $('#project-name-input');
 var projectTypeInputEl = $('#project-type-input');
-var hourlyRateInputEl = $('#hourly-rate-input');
-var dueDateInputEl = $('#due-date-input');
+var hourlyRateInputEl = $('#project-rate-input');
+var dueDateInputEl = $('#project-date-input');
+
 
 // handle displaying the time
 function displayTime() {
@@ -21,9 +22,9 @@ function printProjectData(name, type, hourlyRate, dueDate) {
   var hourlyRate = localStorage.getItem("rate",hourlyRate)
   var dueDate = localStorage.getItem("total",dueDate)
 
-
-
   // You can also chain methods onto new lines to keep code clean
+
+  var projectRowEl = localStorage. getItem ("name", "type", "hourlyRate", "dueDate")
 
   // By listing each `<td>` variable as an argument, each one will be appended in that order
   projectRowEl.append(
@@ -58,8 +59,8 @@ function handleProjectFormSubmit(event) {
 
   var projectName = projectNameInputEl.val().trim();
   var projectType = projectTypeInputEl.val().trim();
-  var hourlyRate = hourlyRateInputEl.val().trim();
-  var dueDate = dueDateInputEl.val().trim();
+  var hourlyRate = hourlyRateInputEl.val();
+  var dueDate = dueDateInputEl.val();
 
   printProjectData(projectName, projectType, hourlyRate, dueDate);
 
