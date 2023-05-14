@@ -16,33 +16,36 @@ function displayTime() {
 };
 
 // handle printing project data to the page
-// function printProjectData(name, type, hourlyRate, dueDate) {
-//   var projects = readProjectsFromStorage
-//   var name = localStorage.getItem("projectname", name)
-//   var type = localStorage.getItem("type",type)
-//   var hourlyRate = localStorage.getItem("rate",hourlyRate)
-//   var dueDate = localStorage.getItem("total",dueDate)
+function printProjectData(name, type, hourlyRate, dueDate) {
+  var projects = readProjectsFromStorage();
+  var name = localStorage.getItem("projectname", name)
+  var type = localStorage.getItem("type",type)
+  var hourlyRate = localStorage.getItem("rate",hourlyRate)
+  var dueDate = localStorage.getItem("total",dueDate)
 
-//   // You can also chain methods onto new lines to keep code clean
+  var storedProjects = JSON.parse(localStorage.projects);
 
-//   var projectRowEl = localStorage. getItem ("name", "type", "hourlyRate", "dueDate")
 
-//   // By listing each `<td>` variable as an argument, each one will be appended in that order
-//   projectRowEl.append(
-//     projectNameTdEl,
-//     projectTypeTdEl,
-//     rateTdEl,
-//     dueDateTdEl,
-//     daysLeftTdEl,
-//     totalTdEl,
-//     deleteProjectBtn
-//   );
+  // You can also chain methods onto new lines to keep code clean
 
-//   projectDisplayEl.append(projectRowEl);
+  var projectRowEl = localStorage. getItem ("name", "type", "hourlyRate", "dueDate")
 
-//   projectModalEl.modal('hide');
+  // By listing each `<td>` variable as an argument, each one will be appended in that order
+  projectRowEl.append(
+    projectNameTdEl,
+    projectTypeTdEl,
+    rateTdEl,
+    dueDateTdEl,
+    daysLeftTdEl,
+    totalTdEl,
+    deleteProjectBtn
+    );
 
-//   }
+  projectDisplayEl.append(projectRowEl);
+
+  projectModalEl.modal('hide');
+
+  }
 
 function readProjectsFromStorage(){
   var projects = localStorage.getItem('projects');
@@ -50,8 +53,9 @@ function readProjectsFromStorage(){
   return projects;
 }
 
-function writeSavelocalData (){
-  var saveLocalData = localStorage.setItem("projects")
+function writeSavelocalData (project){
+  console.log(project)
+  var saveLocalData = localStorage.setItem("projects", JSON.stringify(project));
   saveLocalData = readProjectsFromStorage();
   console.log(saveLocalData)
  
@@ -75,7 +79,19 @@ function handleProjectFormSubmit(event) {
   var hourlyRate = hourlyRateInputEl.val();
   var dueDate = dueDateInputEl.val();
 
-  // printProjectData(projectName, projectType, hourlyRate, dueDate);
+  printProjectData(projectName, projectType, hourlyRate, dueDate);
+
+  //project object with user input from form
+
+  var newProject = {
+    name: projectName,
+    type: projectType,
+    rate: hourlyRate,
+    date: dueDate,
+  }
+
+  writeSavelocalData(newProject);
+
 
   projectFormEl[0].reset();
 }
