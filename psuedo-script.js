@@ -34,7 +34,8 @@ function printProjectData() {
   console.log(projectRowEl)
 
 //By listing each `<td>` variable as an argument, each one will be appended in that order
-  $(projectRowEl).append(
+storedProjects.forEach() => { 
+$(projectRowEl).append(
     projectName<Td>El,
     projectType<Td>El,
     rate<Td>El,
@@ -42,7 +43,7 @@ function printProjectData() {
     daysLeft<Td>El,
     total<Td>El,
     deleteProjectBtn
-  );
+  )};
 
   projectDisplayEl.append(projectRowEl);
 
