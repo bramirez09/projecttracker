@@ -28,26 +28,37 @@ function printProjectData() {
   console.log(storedProjects)
 
 
-//You can also chain methods onto new lines to keep code clean
+  //You can also chain methods onto new lines to keep code clean
 
-  var projectRowEl = localStorage.getItem("projects")
-  console.log(projectRowEl)
+  // var projectRowEl = localStorage.getItem("projects")
+  // console.log(projectRowEl)
 
-//By listing each `<td>` variable as an argument, each one will be appended in that order
-// storedProjects.forEach(projects) => { 
-// $(projectRowEl).append(
-//     projectName<Td>El,
-//     projectType<Td>El,
-//     rate<Td>El,
-//     dueDate<Td>El,
-//     daysLeft<Td>El,
-//     total<Td>El,
-//     deleteProjectBtn
-//   )};
+  var projectRowEl = $("project-display")
 
-//   projectDisplayEl.append(projectRowEl);
+  //By listing each `<td>` variable as an argument, each one will be appended in that order
+  storedProjects.forEach(projects => {
+    $(projectRowEl).append(
+      `<tr>
+        <td>${projectName.name}</td>
+        <td>${projectType.type}</td>
+        <td>${hourlyRate.rate}</td>
+        <td>${dueDate.date}</td>
+      </tr>`)
+      
+    });
 
-//   projectModalEl.modal('hide');
+    // projectName<Td>El,
+    // projectType<Td>El,
+    // rate<Td>El,
+    // dueDate<Td>El,
+    // daysLeft<Td>El,
+    // total<Td>El,
+    // deleteProjectBtn
+  
+
+  projectDisplayEl.append(projectRowEl);
+
+  projectModalEl.modal('hide');
 
 }
 
@@ -62,22 +73,22 @@ function handleProjectFormSubmit(event) {
 
   printProjectData(projectName, projectType, hourlyRate, dueDate);
 
-  var projects = 
-JSON.parse(localStorage.getItem("projects")) || [];
+  var projects =
+    JSON.parse(localStorage.getItem("projects")) || [];
   //project object with user input from form
 
-    var newProject = {
-      name: projectName,
-      type: projectType,
-      rate: hourlyRate,
-      date: dueDate,
-    };
+  var newProject = {
+    name: projectName,
+    type: projectType,
+    rate: hourlyRate,
+    date: dueDate,
+  };
 
-    projects.push(newProject);
-    localStorage.setItem("projects", 
-JSON.stringify(projects));
-    printProjectData();
-    projectFormEl[0].reset();
+  projects.push(newProject);
+  localStorage.setItem("projects",
+    JSON.stringify(projects));
+  printProjectData();
+  projectFormEl[0].reset();
 }
 
 // function calculateTotalEarnings(rate, days) {
