@@ -15,22 +15,22 @@ function displayTime() {
   timeDisplayEl.text(today.format('MMM D, YYYY, h:mm:ss'));
 };
 
-// handle printing project data to the page
+//handle printing project data to the page
 function printProjectData(name, type, hourlyRate, dueDate) {
-  var projects = readProjectsFromStorage();
-  var name = localStorage.getItem("projectname", name)
-  var type = localStorage.getItem("type",type)
-  var hourlyRate = localStorage.getItem("rate",hourlyRate)
-  var dueDate = localStorage.getItem("total",dueDate)
+  // var projects = readProjectsFromStorage();
+  var name = localStorage.getItem("projectname");
+  var type = localStorage.getItem("type");
+  var hourlyRate = localStorage.getItem("rate");
+  var dueDate = localStorage.getItem("total");
 
-  var storedProjects = JSON.parse(localStorage.projects);
+  var storedProjects = JSON.parse(localStorage.getItem("newProject"));
 
 
-  // You can also chain methods onto new lines to keep code clean
+//You can also chain methods onto new lines to keep code clean
 
-  var projectRowEl = localStorage. getItem ("name", "type", "hourlyRate", "dueDate")
+  var projectRowEl = localStorage.getItem("storedProjects")
 
-  // By listing each `<td>` variable as an argument, each one will be appended in that order
+//By listing each `<td>` variable as an argument, each one will be appended in that order
   projectRowEl.append(
     projectNameTdEl,
     projectTypeTdEl,
@@ -39,37 +39,13 @@ function printProjectData(name, type, hourlyRate, dueDate) {
     daysLeftTdEl,
     totalTdEl,
     deleteProjectBtn
-    );
+  );
 
   projectDisplayEl.append(projectRowEl);
 
   projectModalEl.modal('hide');
 
-  }
-
-function readProjectsFromStorage(){
-  var projects = JSON.parse(localStorage.getItem('projects')) || [];
-
-  //projects = JSON.parse(projects);
-  return projects;
 }
-
-/*function writeSavelocalData (project){
-  console.log(project)
-  var saveLocalData = localStorage.setItem("projects", JSON.stringify(project));
-  saveLocalData = readProjectsFromStorage();
-  console.log(saveLocalData)
- 
-}*/
-
-// function calculateTotalEarnings(rate, days) {
-
-
-// }
-
-// function handleDeleteProject(event) {
-// //  var deleteProject = 
-// }
 
 // handle project form submission
 function handleProjectFormSubmit(event) {
@@ -80,7 +56,7 @@ function handleProjectFormSubmit(event) {
   var hourlyRate = hourlyRateInputEl.val();
   var dueDate = dueDateInputEl.val();
 
-  printProjectData(projectName, projectType, hourlyRate, dueDate);
+  // printProjectData(projectName, projectType, hourlyRate, dueDate);
 
   var projects = JSON.parse(localStorage.getItem('projects')) || [];
 
@@ -101,6 +77,14 @@ function handleProjectFormSubmit(event) {
 
   projectFormEl[0].reset();
 }
+
+// function calculateTotalEarnings(rate, days) {
+// }
+
+// function handleDeleteProject(event) {
+// //  var deleteProject = 
+// }
+
 
 projectFormEl.on('submit', handleProjectFormSubmit);
 // projectDisplayEl.on('click', '.delete-project-btn', handleDeleteProject);
