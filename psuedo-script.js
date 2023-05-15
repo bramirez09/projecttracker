@@ -33,16 +33,16 @@ function printProjectData() {
   // var projectRowEl = localStorage.getItem("projects")
   // console.log(projectRowEl)
 
-  var projectRowEl = $("project-display")
+  var projectRowEl = $("#project-display")
 
   //By listing each `<td>` variable as an argument, each one will be appended in that order
   storedProjects.forEach(projects => {
     $(projectRowEl).append(
       `<tr>
-        <td>${projectName.name}</td>
-        <td>${projectType.type}</td>
-        <td>${hourlyRate.rate}</td>
-        <td>${dueDate.date}</td>
+        <td>${projects.name}</td>
+        <td>${projects.type}</td>
+        <td>${projects.rate}</td>
+        <td>${projects.date}</td>
       </tr>`)
       
     });
@@ -56,7 +56,7 @@ function printProjectData() {
     // deleteProjectBtn
   
 
-  projectDisplayEl.append(projectRowEl);
+  projectDisplayEl.append(projectRowEl).html();
 
   projectModalEl.modal('hide');
 
