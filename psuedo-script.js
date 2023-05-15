@@ -34,20 +34,20 @@ function printProjectData() {
   console.log(projectRowEl)
 
 //By listing each `<td>` variable as an argument, each one will be appended in that order
-storedProjects.forEach() => { 
-$(projectRowEl).append(
-    projectName<Td>El,
-    projectType<Td>El,
-    rate<Td>El,
-    dueDate<Td>El,
-    daysLeft<Td>El,
-    total<Td>El,
-    deleteProjectBtn
-  )};
+// storedProjects.forEach(projects) => { 
+// $(projectRowEl).append(
+//     projectName<Td>El,
+//     projectType<Td>El,
+//     rate<Td>El,
+//     dueDate<Td>El,
+//     daysLeft<Td>El,
+//     total<Td>El,
+//     deleteProjectBtn
+//   )};
 
-  projectDisplayEl.append(projectRowEl);
+//   projectDisplayEl.append(projectRowEl);
 
-  projectModalEl.modal('hide');
+//   projectModalEl.modal('hide');
 
 }
 
